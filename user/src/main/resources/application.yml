@@ -14,5 +14,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  rabbitmq:
+    addresses: amqps://raccoon.lmq.cloudamqp.com
+    username: wxealxph
+    password: 1zeO_CDADNen0wpjkbXvbMM1mU-wn6Iv
+    virtual-host: wxealxph
+
 server:
   port: 8081
