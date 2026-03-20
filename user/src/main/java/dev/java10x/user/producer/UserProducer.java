@@ -4,6 +4,7 @@ import dev.java10x.user.domain.UserModel;
 import dev.java10x.user.dto.EmailDto;
 import org.apache.catalina.User;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -11,15 +12,16 @@ import org.springframework.stereotype.Component;
 public class UserProducer {
 
 
-    public final RabbitTemplate rabbitTemplate;
-    private String rountingKey = "email-queue";
+    final RabbitTemplate rabbitTemplate;
+
 
     public UserProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
+    private final String rountingKey = "email-queue";
 
-    @Scheduled(fixedDelay = 1000)
+
     public void sendMessage(UserModel userModel){
         var emailDto = new EmailDto();
         emailDto.setId(userModel.getUserId());
